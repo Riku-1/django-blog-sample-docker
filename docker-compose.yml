@@ -29,6 +29,6 @@ services:
     restart: always
     volumes:
       - ../code:/code
-    command: uwsgi --socket :8000 --module blog.wsgi
+    command: uwsgi --socket :8000 --module project.wsgi
     depends_on:
       - db
