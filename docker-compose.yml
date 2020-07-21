@@ -3,6 +3,8 @@ services:
   db:
     image: mariadb
     restart: always
+    volumes:
+      - ./db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
     ports:
