@@ -7,8 +7,17 @@ services:
       - ./db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
+
+  dbClient:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      PMA_HOST: db
     ports:
-      - 3306:3306
+      - 8085:80
+    depends_on:
+      - db
 
   web:
     image: nginx:1.19.1-alpine
