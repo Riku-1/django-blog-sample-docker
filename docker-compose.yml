@@ -38,6 +38,11 @@ services:
     restart: always
     volumes:
       - ../code:/code
-    command: uwsgi --socket :8000 --module project.wsgi
+    # requeired to set up command in pipenv script
+    command: > 
+      sh -c '
+      pipenv sync &&
+      pipenv run up
+      '
     depends_on:
       - db
