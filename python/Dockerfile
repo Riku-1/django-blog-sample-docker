@@ -1,4 +1,4 @@
-FROM python:3.9.0b4-alpine3.12
+FROM python:3.8.5-alpine3.12
 
 WORKDIR /code
 RUN apk add gcc build-base linux-headers mariadb-connector-c-dev
