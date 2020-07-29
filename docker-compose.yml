@@ -1,24 +1,5 @@
 version: '3'
 services:
-  db:
-    image: mariadb
-    restart: always
-    volumes:
-      - ./db:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-
-  dbClient:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      PMA_HOST: db
-    ports:
-      - 8085:80
-    depends_on:
-      - db
-
   web:
     image: nginx:1.19.1-alpine
     restart: always
@@ -38,11 +19,8 @@ services:
     restart: always
     volumes:
       - ../code:/code
-    # requeired to set up command in pipenv script
     command: > 
       sh -c '
       pipenv install --system &&
       uwsgi --socket :8000 --module project.wsgi
       '
-    depends_on:
-      - db
