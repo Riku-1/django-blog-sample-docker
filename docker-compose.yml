@@ -21,6 +21,6 @@ services:
       - ../code:/code
     command: > 
       sh -c '
-      pipenv install --system &&
+      pipenv install --system --ignore-pipfile --deploy &&
       uwsgi --socket :8000 --module project.wsgi
       '
